@@ -1,0 +1,32 @@
+﻿.add-item-block {
+    margin: 10px 0px 30px 0px;
+    width: 200px;
+}
+
+.items-table-block {
+    margin: 20px 0px 0px 0px;
+}
+
+.center {
+    margin: 0 auto 0 auto;
+    padding: 40px 60px 120px 60px;
+    position: relative;
+    top: -180px;
+    width: 1094px;
+    background-color: white;
+}
+
+.white-line-block {
+    width: 1094px;
+    height: 180px;
+    position: absolute;
+    bottom: -180px;
+    left: 0px;
+    background-color: white;
+}
+.users-not-found-message {
+    margin: 100px auto 0 auto;
+    color: rgb(23, 109, 240);
+    font-size: 54px;
+    text-align: center;
+}

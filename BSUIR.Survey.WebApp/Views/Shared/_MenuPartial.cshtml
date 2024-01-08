@@ -1,0 +1,42 @@
+﻿@using BSUIR.Survey.Domain.Identity
+@using Microsoft.AspNetCore.Identity
+
+@inject SignInManager<User> SignInManager
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    <li class="u-nav-item">
+        <a class="u-button-style u-nav-link" asp-controller="Survey" asp-action="SurveyCreation" style="padding: 20px 30px 20px 32px;">New Survey</a>
+    </li>
+    <li class="u-nav-item">
+        <a class="u-button-style u-nav-link"  asp-controller="Survey" asp-action="SurveysList" style="padding: 20px 30px 20px 32px;">My Surveys</a>
+    </li>
+     <li class="u-nav-item">
+        <a class="u-button-style u-nav-link"  asp-controller="Survey" asp-action="SurveyTemplatesList" style="padding: 20px 30px 20px 32px;">Templates</a>
+    </li>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="u-nav-item">
+            <a class="u-button-style u-nav-link" asp-controller="Administration" asp-action="UsersList" style="padding: 20px 30px 20px 32px;">Users</a>
+        </li>   
+    }
+}
+
+<li class="u-nav-item">
+    <a class="u-button-style u-nav-link" asp-controller="Home" asp-action="About" style="padding: 20px 30px 20px 32px;">About</a>
+</li>
+
+@if (SignInManager.IsSignedIn(User)) 
+{
+    <li class="u-nav-item">
+        <a class="u-button-style u-nav-link" id="login" asp-action="Logout" asp-controller="Account">Logout</a>
+    </li>
+}
+else
+{
+    <li class="u-nav-item">
+        <a class="u-button-style u-nav-link" id="login" asp-action="Login" asp-controller="Account" asp-route-returnUrl="~/Home/About">Login</a>
+    </li>
+}

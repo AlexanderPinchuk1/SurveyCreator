@@ -1,0 +1,119 @@
+﻿.center {
+    margin: 0 auto 0 auto;
+    width: 800px;
+    position: relative;
+    top: -180px;
+    padding: 20px 50px 20px 60px;
+    background-color: white;
+}
+
+.survey-name-block {
+    margin: 20px 0 0 0;
+    width: 600px;
+}
+
+.survey-description-block {
+    margin: 5px 0 5px 0;
+}
+
+.survey-results-mode-block{
+    margin: 10px 0 20px 0;
+}
+
+.survey-result-by-selected-respondent {
+    width: 400px;
+}
+
+.question-block {
+    padding: 10px 50px 10px 0;
+    margin: 15px 0 15px 15px;
+    width: 100%;
+}
+
+.question-description-block {
+    margin: 5px 20px 5px 45px;
+}
+
+.survey-results-content-block {
+    margin: 20px 0 0 0;
+}
+
+.graph-style{
+    margin: 0 0 0 21px;
+}
+
+.tab-style {
+    border: 1px solid #dfe3e7;
+}
+
+.table-block{
+    margin: 25px 30px 20px 45px;
+}
+
+.white-line-block {
+    width: 800px;
+    height: 180px;
+    position: absolute;
+    bottom: -180px;
+    left: 0px;
+    background-color: white;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin: 19px 0 0 0;
+}
+
+.rating > input {
+    display: none
+}
+
+.rating > label {
+    position: relative;
+    width: 0.8em;
+    font-size: 2.5vw;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+    opacity: 1 !important
+}
+
+.rating > input:checked ~ label:before {
+    opacity: 1
+}
+
+.rating:hover > input:checked ~ label:before {
+    opacity: 0.4
+}
+
+.disabledAnswer {
+    pointer-events: none;
+}
+
+.answer-user-block {
+    margin: 55px 80px 40px 80px;
+    width: 100%;
+    min-height: 100px;
+}
+
+.answer-user-block-description {
+    margin: 0 0 0 0;
+    width: 600px;
+    word-wrap: break-word;
+}
+
+.textarea-block {
+    margin: 25px 0 5px 0;
+    width: 500px;
+}

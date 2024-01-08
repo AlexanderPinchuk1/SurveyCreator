@@ -1,0 +1,49 @@
+﻿@model BSUIR.Survey.WebApp.Models.LoginViewModel
+
+@{ 
+    ViewData["Title"] = "Log in";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/login.css" />
+}
+
+
+@section Footer {
+    
+}
+
+
+<div class="center text-style-size-16">
+    <h1 class="center-header">@ViewData["Title"]</h1>
+    <div>
+        <section>
+            <form id="account" method="post" asp-route-returnUrl="@Model.ReturnUrl">
+                <div class="form-group">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="form-control"/>
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control"/>
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <a asp-action="Register" asp-controller="Account">Registration</a>
+                </div class="form-group">
+
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="login-button-block">
+                    <button type="submit" class="btn btn-primary login-button">Log in</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

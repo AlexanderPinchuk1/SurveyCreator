@@ -1,0 +1,121 @@
+﻿@using BSUIR.Survey.Domain.Surveys
+@using BSUIR.Survey.WebApp.Models
+
+@model SurveyViewModel
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/surveyPassing.css" />
+}
+
+@{
+    ViewData["Title"] = "Survey passing";
+}
+
+@section Footer {
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+}
+
+
+<div class="block-after-header gray-color"></div>
+<div class="block-before-footer light-gray-color">
+
+    <div class="center text-style-size-16" id="@Model.Id">
+        <div class="passing-survey-name-block">
+            <h2>@Model.Name</h2>
+        </div>
+
+        <div class="tab-content" style="border: 1px solid #dfe3e7;">
+            @foreach (var page in Model.Pages)
+            {
+                if (Model.Pages[0] == page)
+                {
+                    <div class="tab-pane fade show active" role="tabpanel" id=@("Page" + page.Id)>
+                        <partial name="Questions/Shared/_PageNameBlockPartial" model="page.Name" />
+
+                        <partial name="_QuestionsSelectionPartial" model="page" />
+                    </div>
+                }
+                else
+                {
+                    <div class="tab-pane fade show" role="tabpanel" id=@("Page" + page.Id)>
+                        <partial name="Questions/Shared/_PageNameBlockPartial" model="page.Name" />
+
+                        <partial name="_QuestionsSelectionPartial" model="page" />
+                    </div>
+                }
+            }
+        </div>
+
+        @if ((Model.Options & SurveyOptions.ProgressBar) != 0)
+        {
+            <div class="progress-bar-block">
+                <div class="progress-block">
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.Pages.Count >= 2)
+        {
+            <div class="pages-contollers-block">
+                <div class="page-controller-block">
+                    <button type="button" id="prevPageButton" class="btn btn-primary btn-block" disabled="disabled">Previous</button>
+                </div>
+                <div class="page-controller-block">
+                    <button type="button" id="nextPageButton" class="btn btn-primary btn-block">Next</button>
+                </div>
+            </div>
+        }
+
+        <div class="save-passing-survey-block"></div>
+        <div class="white-line-block"></div>
+    </div>
+</div>
+
+<script type="module">
+    import * as surveyPassing from '../../js/surveyPassing.js';
+
+    surveyPassing.updateProgress();
+    surveyPassing.updateFinishButton();
+
+    const checkAndRadioInputs = document.getElementsByClassName("form-check-input");
+    for (let i = 0; i < checkAndRadioInputs.length; i++) {
+        checkAndRadioInputs[i].addEventListener("change", e => {
+            e.preventDefault();
+            surveyPassing.updateProgress();
+        });
+    }
+
+    const scaleInputs = document.getElementsByClassName("scale-block");
+    for (let i = 0; i < scaleInputs.length; i++) {
+        scaleInputs[i].addEventListener("change", e => {
+            e.preventDefault();
+            surveyPassing.updateProgress();
+        });
+    }
+
+    const textareaInputs = document.getElementsByClassName("ck ck-content ck-editor__editable ck-rounded-corners ck-editor__editable_inline ck-blurred");
+    for (let i = 0; i < textareaInputs.length; i++) {
+        textareaInputs[i].addEventListener("blur", e => {
+            e.preventDefault();
+            surveyPassing.updateProgress();
+        });
+    }
+
+    if (document.getElementById("prevPageButton")) {
+        document.getElementById("prevPageButton").addEventListener("click", e => {
+            e.preventDefault();
+            surveyPassing.changeActivePage(false);
+        });
+    }
+
+    if (document.getElementById("nextPageButton")) {
+        document.getElementById("nextPageButton").addEventListener("click", e => {
+            e.preventDefault();
+            surveyPassing.changeActivePage(true);
+        });
+    }
+</script>

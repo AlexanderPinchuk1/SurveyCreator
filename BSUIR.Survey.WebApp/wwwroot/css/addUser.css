@@ -1,0 +1,27 @@
+﻿
+body {
+    background-color: rgb(41, 45, 51) !important;
+    color: white !important;
+}
+
+.center {
+    width: 350px;
+    height: 550px;
+    margin: 40px auto 80px auto;
+}
+
+.add-user-buttons-block {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0 0 0;
+}
+
+.add-user-button {
+    width: 140px;
+    margin: 0 auto 0 auto;
+}
+
+.cancel-add-user-button {
+    width: 140px;
+    margin: 0 auto 0 auto;
+}

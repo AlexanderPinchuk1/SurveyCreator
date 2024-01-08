@@ -1,0 +1,39 @@
+﻿
+<ul class="pagination">
+    <li class="page-item">
+        <button class="page-link" id="twoPagesBack"><<</button>
+    </li>
+    <li class="page-item">
+        <button class="page-link" id="onePageBack"><</button>
+    </li>
+    <li class="page-item">
+        <button class="page-link" id="onePageForward">></button>
+    </li>
+    <li class="page-item">
+        <button class="page-link" id="twoPagesForward">>></button>
+    </li>
+</ul>
+
+<script type="module">
+    import * as pagination from '../js/pagination.js';
+
+    document.getElementById("twoPagesBack").addEventListener("mousedown", e => {
+        e.preventDefault();
+        pagination.changePage(-2);
+    });
+
+    document.getElementById("onePageBack").addEventListener("mousedown", e => {
+        e.preventDefault();
+        pagination.changePage(-1);
+    });
+
+    document.getElementById("onePageForward").addEventListener("mousedown", e => {
+        e.preventDefault();
+        pagination.changePage(1);
+    });
+
+    document.getElementById("twoPagesForward").addEventListener("mousedown", e => {
+        e.preventDefault();
+        pagination.changePage(2);
+    });
+</script>

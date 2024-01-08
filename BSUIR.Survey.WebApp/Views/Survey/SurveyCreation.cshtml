@@ -1,0 +1,218 @@
+﻿@using BSUIR.Survey.Domain.Surveys
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/surveyCreation.css" />
+}
+
+@{
+    ViewData["Title"] = "Survey creation";
+}
+
+@section Footer {
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+}
+
+@model SurveyTemplate
+
+<div class="block-after-header gray-color"></div>
+
+<div class="block-before-footer light-gray-color">
+    <div class="center text-style-size-16">
+        <div class="survey-name-block">
+            <div class="form-group row">
+                <label for="surveyName" class="col-sm-1 col-form-label"><h4>Name: </h4></label>
+                <div class="survey-name-input-block">
+                    <input type="text" class="form-control" id="surveyName" value="Survey Name">
+                </div>
+            </div>
+        </div>
+
+        <div class="survey-description-block">
+            <p>Questions: 0 Pages: 1</p>
+        </div>
+
+        <div class="survey-controllers-block">
+            <div class="survey-main-controllers-block">
+                <button type="button" class="btn btn-primary" id="saveSurveyButton">Save</button>
+                <button type="button" class="btn btn-secondary" id="saveSurveyAsTemplateButton">Save as template</button>
+                <a type="button" class="btn btn-secondary" asp-controller="Survey" asp-action="SurveyCreation">Cancel</a>
+            </div>
+            <button class="btn btn-secondary" type="button" id="addPageButton">New page</button>
+        </div>
+
+        <div class="errors-block">
+            <ul class="errors-list" id="errorsList"></ul>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8">
+                <div class="new-survey-block">
+                    <ul class="nav nav-tabs" id="pageTabs" role="tablist"></ul>
+                    <div class="tab-content" style="border: 1px solid #dfe3e7;"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                 <div class="survey-settings-block">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header blue-color">
+                            Question type
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <button type="button" id="addQuestionOneAnswerButton" class="btn btn-light" style="background-color: white; border: 1px solid white">
+                                    <div class="icon-in-survey-settings-block">
+                                        <i class="bi bi-list-ul"></i>
+                                    </div>
+                                    One answer
+                                </button>
+                            </li>
+                            <li class="list-group-item">
+                                <button type="button" id="addQuestionWithManyAnswersButton" class="btn btn-light" style="background-color: white; border: 1px solid white">
+                                    <div class="icon-in-survey-settings-block">
+                                        <i class="bi bi-list-check"></i>
+                                    </div>
+                                    Many answers
+                                </button>
+                            </li>
+                            <li class="list-group-item">
+                                <button type="button" id="addQuestionWithTextEditorButton" class="btn btn-light" style="background-color: white; border: 1px solid white">
+                                    <div class="icon-in-survey-settings-block">
+                                        <i class="bi bi-type"></i>
+                                    </div>
+                                    Text
+                                </button>
+                            </li>
+                            <li class="list-group-item">
+                                <button type="button" id="addQuestionWithRatingButton" class="btn btn-light" style="background-color: white; border: 1px solid white">
+                                    <div class="icon-in-survey-settings-block">
+                                        <i class="bi bi-star"></i>
+                                    </div>
+                                    Rating
+                                </button>
+                            </li>
+                            <li class="list-group-item">
+                                <button type="button" id="addQuestionWithScaleButton" class="btn btn-light" style="background-color: white; border: 1px solid white">
+                                    <div class="icon-in-survey-settings-block">
+                                        <i class="bi bi-segmented-nav"></i>
+                                    </div>
+                                    Scale
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>   
+
+                <div class="survey-last-setting-block">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header blue-color">
+                            Survey parameters
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="anonymousSurvey">
+                                    <label class="form-check-label" for="anonymousSurvey">
+                                        Anonymous survey
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="questionNumbers">
+                                    <label class="form-check-label" for="questionNumbers">
+                                        Question have number
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="randomOrderOfQuestions">
+                                    <label class="form-check-label" for="randomOrderOfQuestions">
+                                        Random order of questions
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="fieldProgressBar">
+                                    <label class="form-check-label" for="fieldProgressBar">
+                                        Field progress bar
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="white-line-block"></div>
+    </div>
+</div>
+
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+<script type="module">
+    import * as surveyCreation from '../js/surveyCreation.js';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var template = JSON.parse('@Html.Raw(Json.Serialize(Model))');
+        if(template != null && template.id != "00000000-0000-0000-0000-000000000000"){
+            surveyCreation.setTemplate(template);
+        }else{
+            surveyCreation.addPage();
+        }
+    });
+
+    document.getElementById("addPageButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addPage();
+    });
+
+    document.getElementById("saveSurveyAsTemplateButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addSurvey(true);
+    });
+
+    document.getElementById("saveSurveyButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addSurvey(false);
+    });
+
+    document.getElementById("addQuestionOneAnswerButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addQuestionWithAnswers('radio', true);
+    });
+
+    document.getElementById("addQuestionWithManyAnswersButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addQuestionWithAnswers('checkbox', true);
+    });
+
+    document.getElementById("addQuestionWithTextEditorButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addQuestionWithTextEditor(true);
+    });
+
+    document.getElementById("addQuestionWithRatingButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addQuestionWithRating(true);
+    });
+
+    document.getElementById("addQuestionWithScaleButton").addEventListener("click", e => {
+        e.preventDefault();
+        surveyCreation.addQuestionWithScale(true);
+    });
+
+    document.getElementById("questionNumbers").addEventListener("change", e => {
+        e.preventDefault();
+        surveyCreation.updateQuestionsDescription();
+    });
+
+    document.getElementById("fieldProgressBar").addEventListener("change", e => {
+        e.preventDefault();
+        surveyCreation.updateProgressBarBlock();
+    });
+
+</script>

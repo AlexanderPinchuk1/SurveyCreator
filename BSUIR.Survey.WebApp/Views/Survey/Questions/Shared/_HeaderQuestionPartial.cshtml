@@ -1,0 +1,29 @@
+﻿@using BSUIR.Survey.Domain.Surveys
+
+@model BSUIR.Survey.WebApp.Models.QuestionViewModel
+
+<div class="question-block">
+    @if (Model.Question.IsRequired)
+    {
+        if ((Model.SurveyOptions & SurveyOptions.NumberedQuestions) != 0)
+        {
+            <h5>@(Model.Question.Number + 1). *@Model.Question.Description</h5>
+        }
+        else
+        {
+            <h5>*@Model.Question.Description</h5>
+        }
+    }
+    else
+    {
+        if ((Model.SurveyOptions & SurveyOptions.NumberedQuestions) != 0)
+        {
+            <h5>@(Model.Question.Number + 1). @Model.Question.Description</h5>
+        }
+        else
+        {
+            <h5>@Model.Question.Description</h5>
+        }
+
+    }
+</div>

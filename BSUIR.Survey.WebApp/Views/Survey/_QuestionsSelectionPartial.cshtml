@@ -1,0 +1,39 @@
+﻿@using BSUIR.Survey.Domain.Questions
+
+@model BSUIR.Survey.WebApp.Models.PageViewModel
+
+@foreach (var question in Model.Questions)
+{
+    <div class="passing-question-block">    
+        @switch (question.Question.QuestionType)
+        {
+            case QuestionType.OneAnswer:
+            {
+                <partial name="Questions/_QuestionWithOneAnswerPartial" model="question" />
+                break;
+            }
+            case QuestionType.ManyAnswers:
+            {
+                <partial name="Questions/_QuestionWithManyAnswersPartial" model="question" />
+                break;
+            }
+            case QuestionType.Text:
+            {
+                <partial name="Questions/_QuestionWithTextPartial" model="question" />
+                break;
+            }
+            case QuestionType.Rating:
+            {
+                <partial name="Questions/_QuestionWithRatingPartial" model="question" />
+                break;
+            }
+            case QuestionType.Scale:
+            {
+                <partial name="Questions/_QuestionWithScalePartial" model="question" />
+                break;
+            }
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+    </div>
+}

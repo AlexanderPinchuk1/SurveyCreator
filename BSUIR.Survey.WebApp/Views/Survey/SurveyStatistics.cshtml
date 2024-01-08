@@ -1,0 +1,82 @@
+﻿@using BSUIR.Survey.WebApp.Models
+@using BSUIR.Survey.Domain.Surveys
+
+@{
+    ViewData["Title"] = "Survey Statistics";
+}
+
+@model Survey;
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/surveyStatistics.css" />
+
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <link href="https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css" type="text/css" rel="stylesheet">
+}
+
+@section Footer {
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+}
+
+<a name="top"></a>
+
+<div class="block-after-header gray-color"></div>
+
+<div class="block-before-footer light-gray-color">
+    <div class="center text-style-size-16" id="@(Model.Id)">
+
+        <div class="survey-name-block">
+            <h4>@(Model.Name)</h4>
+        </div>
+
+        <div class="survey-description-block">
+            <p>Questions: @(Model.Pages.SelectMany(page=> page.Questions).Count()) Pages: @(Model.Pages.Count())</p>
+        </div>
+
+        <div class="survey-results-mode-block">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-primary active" id="summaryDataOptionLabel">
+                    <input type="radio" id="summaryDataOption"> Summary data
+                </label>
+                <label class="btn btn-primary" id="seperateAnswerOptionLabel">
+                    <input type="radio" id="seperateAnswerOption"> Separate answer
+                </label>
+            </div>
+        </div>
+
+        <div class="survey-results-content-block" id="resultsBlock"></div>
+
+        <div class="white-line-block"></div>
+    </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+<script src="https://cdn.ckeditor.com/4.18.0/standard-all/ckeditor.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<script type="module">
+    import * as surveyStatistics from '../../js/surveyStatistics.js';
+
+    document.addEventListener('DOMContentLoaded', async function () {
+        await surveyStatistics.viewSummarySurveyStatistics(surveyStatistics.getSurveyId());
+    });
+
+    $("#summaryDataOptionLabel").click(async function () {
+        surveyStatistics.updateRespondentSelection(false);
+        await surveyStatistics.viewSummarySurveyStatistics(surveyStatistics.getSurveyId())
+    });
+
+    $("#seperateAnswerOptionLabel").click(async function () {
+        var surveyId = surveyStatistics.getSurveyId();
+        var respondents = await surveyStatistics.getListOfSurveyRespondents(surveyId);
+        surveyStatistics.updateRespondentSelection(true, respondents, null);
+        if (respondents.length != 0) {
+            await surveyStatistics.viewUserAnswers(surveyId, respondents[0].id);
+        }
+    });
+
+</script>

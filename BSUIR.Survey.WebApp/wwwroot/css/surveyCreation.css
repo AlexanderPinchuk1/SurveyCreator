@@ -1,0 +1,292 @@
+﻿.survey-name-block {
+    margin: 0 0 0 0;
+    width: 1200px;
+}
+
+.survey-description-block {
+}
+
+.survey-controllers-block {
+    margin: 20px 0 20px 0;
+}
+
+.survey-main-controllers-block {
+    float: left;
+    margin: 0 250px 0 0;
+}
+
+.new-survey-block {
+    margin: 0 40px 0px 0;
+    width: 650px;
+    min-height: 200px;
+}
+
+.survey-settings-block { 
+    margin: 40px 0 20px 10px;
+}
+
+.survey-last-setting-block {
+    margin: 10px 0 0 10px;
+}
+
+.icon-in-survey-settings-block {
+    float: left;
+    margin: 0 20px 0 0;
+}
+
+.question-block {
+    float: left;
+    padding: 10px 0 0 0;
+    margin: 0 0 15px 0;
+    width: 90%;
+}
+
+.edit-question-icon {    
+    margin: 23px 0 40px 0;
+}
+
+.edit-question-block {
+    margin: 10px 0 15px 0;
+    height: 60px;
+}
+
+.edit-question-block-header {
+    width: 100%;
+    margin: 0 0 30px;
+}
+
+.edit-question-block-main-header {
+    float: left;
+    width: 60%;
+}
+
+.question-buttons-block {
+    margin: 10px 0 0 0;
+    width: 100%;
+}
+
+.question-button-save {
+    float: left;
+    margin: 0 20px 0 330px;
+}
+
+.question-move-block {
+    float: left;
+}
+
+.textarea-block {
+    margin: 25px 0 5px 0;
+}
+
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin: 19px 0 0 0;
+}
+
+.rating > input {
+    display: none
+}
+
+.rating > label {
+    position: relative;
+    width: 0.8em;
+    font-size: 2.5vw;
+    color: #FFD600;
+    cursor: pointer
+}
+
+.rating > label::before {
+    content: "\2605";
+    position: absolute;
+    opacity: 0
+}
+
+.rating > label:hover:before,
+.rating > label:hover ~ label:before {
+    opacity: 1 !important
+}
+
+.rating > input:checked ~ label:before {
+    opacity: 1
+}
+
+.rating:hover > input:checked ~ label:before {
+    opacity: 0.4
+}
+
+.disabledRating {
+    pointer-events: none;
+}
+
+.disabledScale {
+    pointer-events: none;
+}
+
+.scale-block {
+    width: 150px;
+}
+
+.progress-bar-block {
+    margin: 25px 150px 0 150px;
+}
+
+.edit-page-block {
+    margin: 15px 0 25px 0;
+    height: 50px;
+}
+
+.question-checkbox-block {
+    float: left;
+    margin: 5px 0 20px 25px;
+}
+
+.main-question-card {
+    margin: 0 0 15px 25px;
+}
+
+.question-edit-block {
+    float: left;
+    margin: 7px 11px 5px 0;
+    height: 40px;
+}
+
+.edit-question-description {
+    float: left;
+    width: 500px;
+    height: 40px;
+    margin: 20px 0 10px 0;
+}
+
+.pages-near-progress-bar {
+    float: left;
+    margin: 6px 0 0 20px;
+}
+
+.progress-block {
+    float: left;
+    margin: 10px 0 0 30px;
+    width: 300px
+}
+
+.edit-name-page {
+    float: left;
+    margin: 5px 10px 20px 20px;
+    width: 350px;
+}
+
+.edit-page-icon {
+    float: left;
+    margin: 3px 0 15px 0;
+}
+
+.answer-editing-block {
+    float: left;
+    margin: 7px 0 0 12px;
+}
+
+.answer-block {
+    float: left;
+    margin: 2px 0 0 0;
+}
+
+.errors-block {
+    margin: 0 40px 0 0;
+    width: 650px;
+}
+
+.errors-list {
+    color: red;
+}
+
+.delete-answer-block {
+    margin: 0px 250px 2px 5px;
+    float: left;
+}
+
+.delete-page-block {
+    margin: 10px 0px 10px 210px;
+    float: left;
+}
+
+.delete-question-block {
+    margin: 0px 0px 0px 515px;
+}
+
+.left-floating{
+    float: left;
+}
+
+.indent{
+    margin: 8px 0 8px 0;
+    height: 40px;
+}
+
+.delete-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+}
+
+.addAnswerButtonBlock {
+    margin: 5px 0 5px 36px;
+    width: 500px;
+}
+
+.addAnswerButton {
+    width: 213px;
+    border-color: limegreen;
+    background-color: limegreen;
+}
+
+.addAnswerButton:hover {
+    background-color: #32c332;
+    border-color: #32c332;
+}
+
+.addAnswerButton:after {
+    background-color: #32c332;
+    border-color: #32c332;
+}
+
+.addAnswerButton:focus {
+    background-color: #32c332;
+    border-color: #32c332;
+}
+
+.addAnswerButton:active {
+    background-color: #32c332;
+    border-color: #32c332;
+}
+
+.editingQuestionButton {
+    width: 100px;
+}
+
+.survey-name-input-block{
+    float: left;
+    width: 570px;
+    margin: 20px 0 0 0;
+}
+
+.center {
+    margin: 0 auto 0 auto;
+    width: 1094px;
+    position: relative;
+    top: -180px;
+    padding: 20px 50px 20px 60px;
+    background-color: white;
+}
+
+.white-line-block {
+    width: 1094px;
+    height: 180px;
+    position: absolute;
+    bottom: -180px;
+    left: 0px;
+    background-color: white;
+}

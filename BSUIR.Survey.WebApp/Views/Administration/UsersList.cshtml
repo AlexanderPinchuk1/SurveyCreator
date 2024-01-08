@@ -1,0 +1,100 @@
+﻿@model BSUIR.Survey.Domain.PagedEntities<BSUIR.Survey.Domain.UserInfo>
+
+@{
+    ViewData["Title"] = "Users list";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/usersList.css" />
+    <link rel="stylesheet" href="~/css/table.css" />
+}
+
+@section Footer {
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+}
+
+<div class="block-after-header gray-color"></div>
+
+<div class="block-before-footer light-gray-color">
+    <div class="center text-style-size-16">
+
+        <div class="add-item-block">
+            <a asp-action="AddUser" asp-controller="Administration" class="btn btn-secondary btn-block">Add User</a>
+        </div>
+
+        <div class="table-header">
+            <div class="num-items-per-page-main-block">
+                <div class="num-items-per-page-label">Show</div>
+                <div class="num-items-per-page-block">
+                    <div class="num-items-per-page-input-block">
+                        <input type="number" id="itemCountPerPage" class="form-control" min="1" max="100" asp-for="ItemCountPerPage"/>
+                    </div>
+                </div>
+                <div class="num-items-per-page-label">users</div>
+            </div>
+            <div class="search-block">
+                <div class="search-input-block">
+                    <input class="form-control" id="searchKeyWord" asp-for="SearchKeyWord" type="text">
+                </div>
+                <div class="search-label-block">
+                    Search:
+                </div>
+            </div>
+        </div>
+
+
+        <table class="table" id="usersTable" style="visibility:hidden;">
+            <thead class="blue-color">
+                <tr>
+                    <th scope="col">Email</th>
+                    <th scope="col" class="central-content">Role</th>
+                    <th scope="col" class="central-content">Registered</th>
+                    <th scope="col" class="central-content">Actions</th>
+                </tr>
+            </thead>
+        </table>
+
+
+        <div class="table-footer" id="usersTableFooter" style="visibility:hidden;">
+            <div class="showing-pages-block" id="tableFooterText">
+            </div>
+            <div class="pages-navigation-block">
+                <input asp-for="PageIndex" id="pageIndex" type="hidden" value="@Model.PageIndex"/>
+                <partial name="_PaginationPartial"/>
+            </div>
+        </div>
+
+        <div class="users-not-found-message" style="visibility:hidden;" id="usersNotFoundMessage">
+            Users not found!
+        </div>
+
+        <div class="white-line-block"></div>
+    </div>
+</div>
+
+<script type="module">
+
+    import * as usersList from '../js/usersList.js';
+
+
+    document.addEventListener('DOMContentLoaded', function () {
+        usersList.updateUsersList();
+    });
+
+    document.getElementById("itemCountPerPage").addEventListener("change", e => {
+        e.preventDefault();
+        usersList.updateUsersList();
+    });
+
+    document.getElementById("searchKeyWord").addEventListener("change", e => {
+        e.preventDefault();
+        usersList.updateUsersList();
+    });
+
+    document.getElementById("pageIndex").addEventListener("change", e => {
+        e.preventDefault();
+        usersList.updateUsersList();
+    });
+
+</script>

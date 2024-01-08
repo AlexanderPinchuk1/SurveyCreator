@@ -1,0 +1,24 @@
+﻿@using Newtonsoft.Json
+
+@model BSUIR.Survey.WebApp.Models.QuestionViewModel
+
+<div class="card" style="width: 40rem; border: 0;" id="@Model.Question.Id">
+    <div class="card-body">
+        <partial name="Questions/Shared/_HeaderQuestionPartial" model=@Model />
+
+        <input type="hidden" id="@("isRequire" + Model.Question.Id)" value="@Model.Question.IsRequired">
+        <input type="hidden" id=@("questionType" + Model.Question.Id) value="@Model.Question.QuestionType">
+        @if (Model.Answer != null && JsonConvert.DeserializeObject<string>(Model.Answer) != null)
+        {
+            <input type="range" min="0" max="100" value="@(JsonConvert.DeserializeObject<string>(Model.Answer))" id=@("scale" + Model.Question.Id) class="scale-block" oninput="this.nextElementSibling.value = this.value" />
+            <output>@(JsonConvert.DeserializeObject<string>(Model.Answer))</output>
+        }
+        else
+        {
+            <input type="range" min="0" max="100" value=0 id=@("scale" + Model.Question.Id) class="scale-block" oninput="this.nextElementSibling.value = this.value" />
+            <output>0</output>
+        }
+
+        <partial name="Questions/Shared/_ErrorBlockPartial" model="@(Model.Question.Id)" />
+    </div>
+</div>

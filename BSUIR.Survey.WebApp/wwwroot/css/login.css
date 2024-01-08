@@ -1,0 +1,23 @@
+﻿
+body {
+    background-color: rgb(41, 45, 51) !important;
+    color: white !important;
+}
+
+.center {
+    width: 350px;
+    height: 550px;
+    margin: 100px auto 0 auto;
+    padding: 0px 0px 0px 0px;
+}
+
+.login-button-block {
+    width: 100%;
+    text-align: center;
+    margin: 0px 0px 0px 0px;
+}
+
+.login-button{
+    width: 200px;
+    margin: 0 auto 0 auto;
+}

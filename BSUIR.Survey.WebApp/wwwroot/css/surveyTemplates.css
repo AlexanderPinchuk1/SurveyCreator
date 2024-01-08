@@ -1,0 +1,77 @@
+﻿.center {
+    margin: 0 auto 0 auto;
+    padding: 40px 60px 120px 60px;
+    position: relative;
+    top: -180px;
+    width: 1094px;
+    background-color: white;
+}
+
+.data-in-table {
+    margin: 6px 0 0 0;
+}
+
+.horizontal-allign {
+    text-align: center;
+}
+
+.white-line-block {
+    width: 1094px;
+    height: 180px;
+    position: absolute;
+    bottom: -180px;
+    left: 0px;
+    background-color: white;
+}
+
+.surveys-templates-not-found-message {
+    margin: 200px auto 0 auto;
+    color: rgb(23, 109, 240);
+    font-size: 54px;
+    text-align: center;
+}
+
+.templates-area{
+    margin: 1px 0 0 0;
+}
+
+.template-block {
+    float: left;
+    margin: 30px 34px 30px 34px;
+    width: 16rem;
+}
+
+
+.template-list-header {
+    padding: 0 38px 0 35px
+}
+
+.template-list-footer{
+    float: left;
+    width: 1000px;
+    padding: 0 60px 0 35px
+}
+
+.delete-template-icon-block {
+    float: right;
+}
+
+.delete-button {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    width: 35px;
+    height: 35px;
+}
+
+.template-card-header{
+    text-decoration: none;
+    letter-spacing: 1px;
+    font-size: 24px;
+    font-family: 'Open Sans',sans-serif;
+    transition: .3s ease-in-out;
+    float: left;
+}

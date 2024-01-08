@@ -1,0 +1,64 @@
+﻿@using BSUIR.Common
+
+@model BSUIR.Survey.WebApp.Models.AddUserViewModel
+
+@{
+    ViewData["Title"] = "Add user";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/addUser.css" />
+}
+
+@section Footer {
+    
+}
+
+<div class="center text-style-size-16">
+    <h3 class="center-header">@ViewData["Title"]</h3>
+    <div>
+        <form method="post" asp-action="AddUser" asp-controller="Administration">
+            <div class="form-group">
+                <label asp-for="Role"></label>
+                <select asp-for="Role" class="form-select">
+                    <option value=@Role.User>@Role.User</option>
+                    <option selected value=@Role.Admin>@Role.Admin</option>
+                </select>
+                <span asp-validation-for="Role" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword"></label>
+                <input asp-for="ConfirmPassword" class="form-control" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+            <div class="form-group">
+                <div class="add-user-buttons-block">
+                    <table width="350">
+                        <tr>
+                            <td><button type="submit" class="btn btn-primary add-user-button">Add</button></td>
+                            <td><a asp-action="UsersList" asp-controller="Administration" class="btn btn-secondary cancel-add-user-button">Cancel</a></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

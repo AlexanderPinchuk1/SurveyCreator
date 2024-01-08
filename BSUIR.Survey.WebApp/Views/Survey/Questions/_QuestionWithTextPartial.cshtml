@@ -1,0 +1,44 @@
+﻿@using Newtonsoft.Json
+
+@model BSUIR.Survey.WebApp.Models.QuestionViewModel
+
+<div class="card" style="width: 40rem; border: 0;" id="@Model.Question.Id">
+    <div class="card-body">
+        <partial name="Questions/Shared/_HeaderQuestionPartial" model=@Model />
+
+        <input type="hidden" id="@("isRequire" + Model.Question.Id)" value="@Model.Question.IsRequired">
+        <input type="hidden" id=@("questionType" + Model.Question.Id) value="@Model.Question.QuestionType">
+        <div class="textarea-block">
+            @if (Model.Answer != null && JsonConvert.DeserializeObject<string>(Model.Answer) != null)
+            {
+                <textarea id="@("textArea" + Model.Question.Id)">@(JsonConvert.DeserializeObject<string>(Model.Answer))</textarea>
+            }
+            else
+            {
+                <textarea id="@("textArea" + Model.Question.Id)"></textarea>
+            }
+
+        </div>
+
+        <partial name="Questions/Shared/_ErrorBlockPartial" model="@(Model.Question.Id)" />
+    </div>
+</div>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/28.0.0/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector( '#textArea' + "@Model.Question.Id"),
+            {
+                toolbar: ['heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote'],
+                heading:
+                {
+                    options: [
+                        { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                        { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                        { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }]
+                }
+            })
+        .catch(error => {
+            console.log(error);
+        });
+</script>

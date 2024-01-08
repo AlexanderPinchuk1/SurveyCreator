@@ -1,0 +1,85 @@
+﻿@using BSUIR.Survey.Domain.Surveys
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/surveyTemplates.css" />
+    <link rel="stylesheet" href="~/css/table.css" />
+}
+
+@{
+    ViewData["Title"] = "Survey Templates";
+}
+
+@section Footer {
+    <div class="u-clearfix u-sheet u-sheet-1"></div>
+}
+
+@model BSUIR.Survey.Domain.PagedEntities<BSUIR.Survey.Domain.Surveys.SurveyTemplateInfo>
+
+<div class="block-after-header gray-color"></div>
+
+<div class="block-before-footer light-gray-color">
+    <div class="center text-style-size-16">
+        
+        <div class="table-header template-list-header">
+            <div class="num-items-per-page-main-block">
+                <div class="num-items-per-page-label">Show</div>
+                <div class="num-items-per-page-block">
+                    <div class="num-items-per-page-input-block">
+                        <input type="number" id="itemCountPerPage" class="form-control" value="5" min="1" max="100"/>
+                    </div>
+                </div>
+                <div class="num-items-per-page-label">templates</div>
+            </div>
+            <div class="search-block">
+                <div class="search-input-block">
+                    <input type="text" class="form-control" id="searchKeyWord">
+                </div>
+                <div class="search-label-block">
+                    Search:
+                </div>
+            </div>
+        </div>
+
+        <div class="templates-area" id="templatesArea">
+            <div id="templatesContent">
+            </div>
+        </div>
+
+        <div class="table-footer template-list-footer"  id="surveysTableFooter" style="visibility:hidden;">
+            <div class="showing-pages-block" id="tableFooterText">
+            </div>
+            <div class="pages-navigation-block">
+                <input asp-for="PageIndex" name="pageIndex" id="pageIndex" type="hidden" value="@Model.PageIndex"/>
+
+                <partial name="_PaginationPartial"/>
+            </div>
+        </div>
+        
+        <div class="white-line-block"></div>
+    </div>
+</div>
+
+<script type="module">
+
+    import * as surveyTemplatesList from '../js/surveyTemplatesList.js';
+
+    document.addEventListener('DOMContentLoaded', function () {
+        surveyTemplatesList.updateSurveyTemplatesList();
+    });
+
+    document.getElementById("itemCountPerPage").addEventListener("change", e => {
+        e.preventDefault();
+        surveyTemplatesList.updateSurveyTemplatesList();
+    });
+
+    document.getElementById("searchKeyWord").addEventListener("change", e => {
+        e.preventDefault();
+        surveyTemplatesList.updateSurveyTemplatesList();
+    });
+
+    document.getElementById("pageIndex").addEventListener("change", e => {
+        e.preventDefault();
+        surveyTemplatesList.updateSurveyTemplatesList();
+    });
+</script>

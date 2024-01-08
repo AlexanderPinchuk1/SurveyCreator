@@ -1,0 +1,65 @@
+﻿@using BSUIR.Common
+
+@model BSUIR.Survey.WebApp.Models.EditUserViewModel
+
+@{
+    ViewData["Title"] = "Edit user";
+}
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/editUser.css" />
+}
+
+
+@section Footer {
+    
+}
+
+<div class="center text-style-size-16">
+    <h1 class="center-header">@ViewData["Title"]</h1>
+  
+    <form method="post" asp-action="EditUser" asp-controller="Administration">
+        <input asp-for="Id" type="hidden"/>
+   
+        <div class="form-group">
+            <label asp-for="Role"></label>
+            <select asp-for="Role" class="form-select">
+                @if (Model.Role == Role.Admin)
+                {
+                    <option selected value=@Role.Admin>@Role.Admin</option>
+                    <option value=@Role.User>@Role.User</option>
+                }
+                else
+                {
+                    <option value=@Role.Admin>@Role.Admin</option>
+                    <option selected value=@Role.User>@Role.User</option>
+                }
+            </select>
+            <span asp-validation-for="Role" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+        <div class="form-group">
+            <div class="edit-user-buttons-block">
+                <table width="350">
+                    <tr>
+                        <td><button type="submit" class="btn btn-primary update-user-button">Update</button></td>
+                        <td><a asp-action="UsersList" asp-controller="Administration" class="btn btn-secondary cancel-update-user-button">Cancel</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
